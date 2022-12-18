@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			#background_html {
+				height: 100%;
+				width: 100%;
+				position: fixed;
+				background-color: #1b2838;
+				animation-name: background_html;
+				animation-duration: 1000ms;
+				animation-delay: 0ms;
+				animation-iteration-count: 1;
+				animation-fill-mode: forwards;
+			}
+			@keyframes background_html{
+				0% { opacity: 1; }
+				80% { opacity: 1; }
+				100% { opacity: 0;visibility: hidden;}
+			}
+			body {
+				background-color: #1b2838;
+			}
+			#search {
+				color: #9099a1;
+				font-size: 18px;
+				font-weight: 300px;
+				padding: 20px;
+				background: radial-gradient(farthest-corner at 40px 80%,#1b2838 0%, #203750 80%);
+			}
+			#app {
+				padding-top: 30px;
+				list-style-type: none;
+				display: inline-block;
+				text-align: center;
+			}
+			#app > li {
+				background-color: #16202d;
+				margin: 2.5px;
+				max-width: 180px;
+				width: 100%;
+				height: auto;
+				vertical-align: -30px;
+				padding: 10px;
+				display: inline-block;
+				color: rgb(199, 213, 224);
+			}
+			li > * {
+				vertical-align: -55%;
+			}
+			.name {
+				white-space: nowrap;
+				overflow: hidden;
+			}
+			.discount > * {
+				display: inline-block;
+				vertical-align: -50%;
+			}
+			.discount > h5 {
+				color: rgb(190, 238, 17);
+				background-color: #597a1f;
+				padding: 1px 5px;
+			}
+			.discount > h6 {
+				color: rgb(190, 238, 17);
+			}
+			.discount > strike {
+				color: rgb(136, 136, 136);
+				vertical-align: -37%;
+			}
+			#menuTab {
+				  display: block;
+				  background-color: rgba( 104, 157, 221, 0.6 );
+				  position: fixed;
+				  right: 0;
+				  top: 20%;
+				  border-top-left-radius: 80px;
+				  border-bottom-left-radius: 80px;
+				  width: 30px;
+				  height: 50px;
+				  background-image: url( 'https://store.steamchina.com/public/shared/images/responsive/local_menu_hamburger.png' );
+				  background-repeat: no-repeat;
+				  background-position: 2px center;
+				  background-size: 110%;
+				  transition: opacity 0.5s;
+				  box-shadow: 0 0 30px 0 #6799e2;
+				  cursor: pointer;
+				  z-index: 2;
+				}
+			#menu {
+				position: fixed;
+				display: inline-block;
+				right: -280px;
+				max-width: 280px;
+				height: 100%;
+				width: 100%;
+				background-color: #171a21;
+				z-index: 1;
+				animation-fill-mode: forwards;
+			}
+			#menu > * {
+				color: #ffffff;
+				padding: 20px;
+			}
+			.opening {
+				animation-name: opening;
+				animation-duration: 200ms;
+				animation-iteration-count: 1;
+			}
+			.closing {
+				animation-name: closing;
+				animation-duration: 200ms;
+				animation-iteration-count: 1;
+			}
+			@keyframes opening{
+				from{right: -280px;}
+				to{right: 0;}
+			}
+			@keyframes closing{
+				from{right: 0;}
+				to{right: -280px;}
+			}
+			#container {
+				height: 30vh;
+				min-height: 100px;
+				width: 90vw;
+				animation-name: containopen2;
+				animation-duration: 2000ms;
+				animation-iteration-count: 1;
+				animation-fill-mode: forwards;
+				cursor: pointer;
+			}
+			@keyframes containopen4{
+				from { margin: auto; }
+				to { color: #ffffff; }
+			}
+			@keyframes containopen3{
+				from { margin: auto; }
+				to { margin-bottom: 10px; }
+			}
+			@keyframes containopen2{
+				from { opacity: 0; }
+				to {
+					opacity: 0.9;
+					border-radius: 5px;
+				}
+			}
+			@keyframes containopen{
+				from { margin: 0 100%; }
+				to {
+					color: #ffffff;
+					background-color: rgba( 104, 157, 221, 0.6 );
+					width: 90%;
+					max-width: 90%;
+					text-align: left;
+					box-shadow: 2px 2px 50px 2px #16202d;
+					border-radius: 5px;
+					opacity: 0.7;
+				}
+			}
+			@keyframes containclose{
+				from {
+					color: #ffffff;
+					background-color: rgba( 104, 157, 221, 0.6 );
+					width: 90%;
+					max-width: 90%;
+					text-align: left;
+					box-shadow: 2px 2px 50px 2px #16202d;
+					border-radius: 5px;
+					}
+				to { margin: auto; }
+			}
+			#app > li.grid {
+				animation-name: containopen;
+				animation-duration: 500ms;
+				animation-iteration-count: 1;
+				animation-fill-mode: forwards;
+				cursor: default;
+			}
+			#app > li {
+				animation-name: containclose;
+				animation-duration: 500ms;
+				animation-iteration-count: 1;
+				animation-fill-mode: none;
+				cursor: pointer;
+			}
+			#app > li.grid > * {
+				animation-name: containopen3;
+				animation-duration: 500ms;
+				animation-iteration-count: 1;
+				animation-fill-mode: forwards;
+			}
+			#app > li.grid > .discount > * {
+				animation-name: containopen4;
+				animation-duration: 500ms;
+				animation-iteration-count: 1;
+				animation-fill-mode: forwards;
+			}
+			li.grid > .name {
+				white-space: normal;
+			}
+			
+		</style>
+		<script type="text/javascript" src="./priceSheet.js"></script>
+		<script src="https://cdn.highcharts.com.cn/highcharts/highcharts.js"></script>
+		<script src="https://cdn.highcharts.com.cn/highcharts/themes/dark-unica.js"></script>
+	</head>
+	<body>
+		<div id="background_html"></div>
+		<div>
+			<div id="menuTab" onclick="menuOpen(this)"></div>
+			<div id="menu">
+				<h2>蓝莓小果冻 bemly_</h2>
+				<h3>倾情打造</h3>
+				<h4>以后再来做筛选界面，先用着搜索吧</h4>
+			</div>
+		</div>
+		<div id="search">所有产品</div>
+			<ul id="app">
+			</ul>
+		</div>
+	</body>
+	<script>
+		let openCount = 1;
+		function menuOpen(m) {
+			if (openCount === 100) alert("啊~ 不要再晃我啦>v<");
+			m = document.getElementById("menu").classList;
+			console.log(m);
+			openCount++ % 2 === 1 ? m.remove("closing")||m.add("opening") : m.remove("opening")||m.add("closing");
+		}
+		function steam(t) {
+			console.log(t);
+			let i1 = document.getElementById('container'), i2 = document.getElementsByClassName('grid');
+			if (i1 !== null) i1.remove();
+			for (let i = 0; i < i2.length; i++) i2[i].classList.remove('grid');
+			console.log('我是傻逼，就先把垃圾代码搁这了');
+			console.log(t);
+			//以后用更无脑的递归
+			if (isNaN(+t.target.id) || t.target.id === '') {
+				if (isNaN(+t.target.parentElement.id) || t.target.parentElement.id === '') {
+					if (isNaN(+t.target.parentElement.parentElement.parentElement.id) || t.target.parentElement.parentElement.id === '') {
+						gridOpen(t.target.parentElement.parentElement.parentElement.id);
+						//window.open('https://store.steamchina.com/app/' + t.target.parentElement.parentElement.parentElement.id);
+					} else {
+						gridOpen(t.target.parentElement.parentElement.id);
+						//window.open('https://store.steamchina.com/app/' + t.target.parentElement.parentElement.id);
+					}
+				} else {
+					gridOpen(t.target.parentElement.id);
+					//window.open('https://store.steamchina.com/app/' + t.target.parentElement.id);
+				}
+			} else {
+				gridOpen(t.target.id);
+				//window.open('https://store.steamchina.com/app/' + t.target.id);
+			}
+		}
+		
+		function gridOpen(id) {
+			console.log(id);
+			if (isNaN(+id) || id === '') return;
+			
+			
+			var aaaa = [], bbbb = [], cccc= j[id].history;
+			for (let i = 0; i < cccc.length; i++) {
+				aaaa[i] = cccc[i].date.join('-');
+				bbbb[i] = +cccc[i].price.slice(2,-1);
+			}
+			
+			let grid = document.createElement('div');
+			grid.id = 'container';
+			document.getElementById(id).classList.add('grid');
+			document.getElementById(id).appendChild(grid);
+			Highcharts.chart('container', {
+				chart: { backgroundColor: { stops: [ [0, "#1b2838"], [1, "#20364e"] ] } },
+				tooltip: {
+					backgroundColor: "#16202d",
+					style: { color: "rgb(199, 213, 224)" }
+				},
+				title: { text: null },
+				legend: { enabled: false },
+				xAxis: {
+					title: { text: '日期', style: { color: "rgb(199, 213, 224)" } },
+					categories: aaaa,
+					gridLineWidth: 1,
+					gridLineColor: "rgb(199, 213, 224, 0.2)",
+					labels: { style: { color: "rgb(199, 213, 224)" } },
+					lineColor: "rgb(199, 213, 224)",
+					tickColor: "#00000000"
+				},
+				credits: { style: { color: "#00000000" } },
+				yAxis: {
+					title: { text: '软妹币', style: { color: "rgb(199, 213, 224)" } },
+					gridLineColor: "rgb(199, 213, 224, 0.2)",
+					labels: { style: { color: "rgb(199, 213, 224)" } },
+					tickColor: "#00000000",
+				},
+				series: [{
+					data: bbbb,
+					name: '￥',
+					step: 'center' // 连接线转折对齐
+				}]
+			});
+		}
+		// let a = ;
+		// let c = document.appendChild();
+		// let t = document.createTextNode('aawadawawdwaadwa');
+		// a.appendChild(document.createTextNode());
+		// <li>
+		// 		<h4 class="name">反恐精英：全球攻势</h4>
+		// 		<div class="discount">
+		// 			<h5>-30%</h5>
+		// 			<strike><h6>¥ 89.60</h6></strike>
+		// 			<h6>¥ 89.60</h6>
+		// 		</div>
+		// </li>
+		// <li>
+		// 		<h4>仙剑奇侠传七</h4>
+		// 		<h6>免费开玩</h6>
+		// </li>
+		//<div id="container"></div>
+		
+		for (let k in j) {
+			if (k === 'date') break;
+			if (j[k].isDiscount !== 0) {
+				let li = document.createElement('li');
+				let name = document.createElement('h4');
+				let discount = document.createElement('div');
+				let comparePrice = document.createElement('h5');
+				let strike = document.createElement('strike');
+				let strikePrice = document.createElement('h6');
+				let price = document.createElement('h6');
+				name.classList.add("name");
+				discount.classList.add("discount");
+				li.id = k;
+				li.onclick = t=>steam(t);
+				li.appendChild(name);
+				li.appendChild(discount);
+				discount.appendChild(comparePrice);
+				discount.appendChild(strike);
+				discount.appendChild(price);
+				strike.appendChild(strikePrice);
+				name.appendChild(document.createTextNode(j[k].name));
+				comparePrice.appendChild(document.createTextNode(j[k].isDiscount));
+				strikePrice.appendChild(document.createTextNode(j[k].Oldprice));
+				price.appendChild(document.createTextNode(j[k].Newprice));
+				document.getElementById('app').appendChild(li);
+				
+			} else {
+				let li = document.createElement('li');
+				let name = document.createElement('h4');
+				let price = document.createElement('h6');
+				name.classList.add("name");
+				li.id = k;
+				li.onclick = t=>steam(t);
+				li.appendChild(name);
+				li.appendChild(price);
+				name.appendChild(document.createTextNode(j[k].name));
+				price.appendChild(document.createTextNode(j[k].price));
+				document.getElementById('app').appendChild(li);
+			}
+		}
+		
+		
+		
+
+		// console.log(document.body.children[2]);
+		
+		// document.getElementById("app").appendChild(document.createElement("li"));
+	</script>
+</html>
