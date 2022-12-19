@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
 		<title></title>
 		<style>
 			* {
@@ -345,7 +346,7 @@
 				discount.appendChild(strike);
 				discount.appendChild(price);
 				strike.appendChild(strikePrice);
-				name.appendChild(document.createTextNode(j[k].name));
+				name.appendChild(document.createTextNode(decodeURI(j[k].name));
 				comparePrice.appendChild(document.createTextNode(j[k].isDiscount));
 				strikePrice.appendChild(document.createTextNode(j[k].Oldprice));
 				price.appendChild(document.createTextNode(j[k].Newprice));
@@ -360,7 +361,7 @@
 				li.onclick = t=>steam(t);
 				li.appendChild(name);
 				li.appendChild(price);
-				name.appendChild(document.createTextNode(j[k].name));
+				name.appendChild(document.createTextNode(decodeURI(j[k].name)));
 				price.appendChild(document.createTextNode(j[k].price));
 				document.getElementById('app').appendChild(li);
 			}
